@@ -29,7 +29,10 @@ app.use('/api/checkout',checkoutRouter)
 
 if(process.env.NODE_ENV ==='production'){
     app.use(express.static('shoping/build'));
-   
+    const path=require('path');
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname,'build','index.js'))
+    })
 }
 const PORT=process.env.PORT || 3001
 
