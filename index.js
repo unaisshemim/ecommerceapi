@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const dotenv = require("dotenv");
 const userAuth=require('./routes/auth')
-
+const UpdateUser=require("./routes/user")
 dotenv.config();
 app.use(express.json())
 
@@ -15,11 +15,13 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-app.use('/auth',userAuth)
+  app.use('/auth',userAuth)
+  app.use("/update",UpdateUser)
+  
 
 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log("server is running ");
+  console.log("server is running ")
 });
